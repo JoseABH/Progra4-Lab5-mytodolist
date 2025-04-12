@@ -5,3 +5,42 @@
   text-align: center;
 }
 
+#contenedor{
+  display: flex;
+  flex-direction: column;
+  height: 50vh;
+  width: 50vw;
+  background-color: rgb(33, 33, 33);
+  border: 3px solid  rgb(17, 17, 17);
+  border-radius: 20px;
+  padding: 1rem;
+}
+
+#barra{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+ul{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+li{
+  background-color: rgb(27, 27, 27);
+  border-radius: 5px;
+  font-size: 1.2rem;
+ 
+}
+
+#inputbarra{
+  width: 80%;
+  height: 80%;
+  padding-left: 15px;
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
