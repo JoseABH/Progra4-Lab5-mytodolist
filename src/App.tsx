@@ -21,32 +21,30 @@ function App() {
 
     }
 
-    temptodoList.push(newTodo)
+    temptodoList.unshift(newTodo)
     setTodoList(temptodoList)
-
-
   }
-  
+
   return (
     <>
-    <div style={{ border: '1px solid blue', padding: 10 }}>
+      <div id='contenedor'>
+        <div id='barra'>
+          <input 
+            id='inputbarra'
+            type='text'
+            value={todoDescription}
+            onChange={handleChange}
+            placeholder='New task' />
+          <button onClick={handleClick}>Add Item</button>
+        </div>
 
-<div>
-  <input
-    type='text'
-    value={todoDescription}
-    onChange={handleChange}
-    style={{ marginRight: 10 }} />
-  <button onClick={handleClick}>Add Item</button>
-</div>
-
-<div>TODOs here:</div>
-
-<div>{ JSON.stringify(todoList)}</div>
-
-
-</div>
-    
+        <div>TODOs here:</div>
+        <ul>
+          {todoList.map((todo, index) => {
+            return <li key= {index}>{todo.description}</li>
+          })}
+        </ul>
+      </div>
     </>
   )
 }
