@@ -32,10 +32,9 @@ ul{
 }
 
 li{
-  background-color: rgb(27, 27, 27);
+  background-color: #1b1b1b;
   border-radius: 5px;
   font-size: 1.2rem;
- 
 }
 
 #inputbarra{

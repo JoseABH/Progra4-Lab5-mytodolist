@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 
 interface Todo {
   description: string
+  completed: boolean
 }
 function App() {
 
@@ -40,7 +41,8 @@ function App() {
       setEditingIndex(null)
     } else {
       const newTodo: Todo = {
-        description: todoDescription
+        description: todoDescription,
+        completed: false,
 
       }
       const updated = [newTodo, ...todoList]
@@ -61,9 +63,19 @@ function App() {
   }
 
   const handleDelete = (index: number) => {
+    if(!confirm("¿ Desea eliminar la tarea ?"))return
     const updated = todoList.filter((_, i) => i !== index)
     setTodoList(updated)
     saveToLocalStorage(updated)
+  }
+
+  const handleToggle = (index: number) => {
+    const updated = [...todoList]
+    const todo = updated[index]
+    todo.completed = !todo.completed
+    updated.splice(index, 1)
+    todo.completed ? updated.push(todo) : updated.unshift(todo)
+    setTodoList(updated)
   }
 
   return (
@@ -91,21 +103,31 @@ function App() {
 
         <ul>
           {todoList.map((todo, index) => {
-            return <li key={index}
+            return <li 
+              key={index}
               style={{
                 display: 'flex',
+                color: todo.completed ? 'red' : 'white',
+                backgroundColor: todo.completed ? '#2e2e2e' : '#1b1b1b',
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 marginBottom: 8,
                 paddingLeft: 20,
               }}
-            >{todo.description}
+            >
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => handleToggle(index)}
+                style={{ marginRight: 8 }}
+              />
+              {todo.description}
               <div>
-                <button onClick={() => startEditing(index)} style={{ marginLeft: 5 }}>
+                <button onClick={() => startEditing(index)} style={{ marginLeft: 5, padding:5, backgroundColor: '#db9600' }}>
                   Editar
                 </button>
 
-                <button onClick={() => handleDelete(index)} style={{ marginLeft: 5 }}>
+                <button onClick={() => handleDelete(index)} style={{ marginLeft: 5,padding:5, backgroundColor: 'red'}}>
                   Eliminar
                 </button>
 
