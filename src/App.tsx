@@ -5,6 +5,8 @@ import { useState, useEffect } from 'react'
 interface Todo {
   description: string
   completed: boolean
+  completedDate?: string
+
 }
 function App() {
 
@@ -73,14 +75,19 @@ function App() {
     const updated = [...todoList]
     const todo = updated[index]
     todo.completed = !todo.completed
+    todo.completedDate = todo.completed ? new Date().toLocaleString() : undefined
+
     updated.splice(index, 1)
     todo.completed ? updated.push(todo) : updated.unshift(todo)
+
     setTodoList(updated)
+    saveToLocalStorage(updated)
   }
 
   return (
     <>
       <h1>LAB 5</h1>
+      <h3>Alumnos:Jose Baltodano, Naila Torres</h3>
       <div id='contenedor'>
         <div>TODOs here:</div>
         <div id='barra'>
@@ -122,6 +129,14 @@ function App() {
                 style={{ marginRight: 8 }}
               />
               {todo.description}
+              {todo.completed && (
+                <span style={{ marginLeft: 10, fontSize: '0.8em' }}>
+                  (Completado el {todo.completedDate})
+                </span>
+              )}
+
+
+
               <div>
                 <button onClick={() => startEditing(index)} style={{ marginLeft: 5, padding:5, backgroundColor: '#db9600' }}>
                   Editar
