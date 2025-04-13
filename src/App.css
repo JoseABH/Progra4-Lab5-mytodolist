@@ -13,7 +13,7 @@
   background-color: rgb(33, 33, 33);
   border: 3px solid  rgb(17, 17, 17);
   border-radius: 20px;
-  padding: 1rem;
+  padding: 1rem 10px 0 10px;
 }
 
 #barra{
@@ -28,6 +28,7 @@ ul{
   flex-direction: column;
   gap: 0.5rem;
   overflow-y: auto;
+  padding: 0;
 }
 
 li{
